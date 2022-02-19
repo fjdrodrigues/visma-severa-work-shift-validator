@@ -44,7 +44,6 @@ public class WorkShiftValidatorTest {
      * @param startingTime
      * @param endingTime
      */
-    //@org.junit.jupiter.api.Test
     @ParameterizedTest
     @MethodSource("isValidArguments")
     public void testIsValid(boolean expResult, String date, String startingTime, String endingTime) {
@@ -79,11 +78,11 @@ public class WorkShiftValidatorTest {
         WorkShiftValidator instance =
                 new WorkShiftValidator(LocalDate.parse(date), startingTime, endingTime);
         if (expResult != null) {
-            String result = instance.getMessage().get();
+            String result = instance.getCauseOfInvalidity().get();
             assertEquals(expResult, result);
         } else {
             Optional<String> expResultOptional = Optional.empty();
-            Optional<String> resultOptional = instance.getMessage();
+            Optional<String> resultOptional = instance.getCauseOfInvalidity();
             assertEquals(expResultOptional, resultOptional);
         }
     }
